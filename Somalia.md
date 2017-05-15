@@ -1,4 +1,4 @@
-# DCS17CTF_S21Sec_task_and_writeups
+# DCS17CTF S21Sec task and writeups
 Tasks, scripts and writeups of most fun or interesting tasks of DCS17CTF (S21SEC)
 https://challenge.s21sec.com
 
@@ -18,7 +18,7 @@ A quickly way to sort those udp source ports that will output only hexadecimal s
 tshark -r exfiltracion_111abda47b950e6cd474a43583372c4f.pcapng -Tfields -e udp.srcport -e dns.qry.name |sort -n | cut -f2| sed 's/.des//g'|tr -d "\n"
 `
 
-This produces output:
+This produces sorted output by udp source port:
 
 
 0a73a58aecc21437e1904c8ab6052dc1
@@ -26,12 +26,6 @@ a0f76199fa5794ca01e8758aad48de3d
 d4b60088a7bb9c279f4f9996e8cb8567
 afe260dec74371276b702a5fd30dadd5
 d8cd76f9fd75d811236b823593238570
-03448e77303587aeb5a3ef036ca8d2cf
-d6058a89152f249ea1c0fa0d98f16818
-8b9fe0f3f028d7a065b8a1b035746e89
-a92f42d82222da6fd19bb7f3a48806b2
-e12ee6c61d0ce61d41667e24cd1efa17
-b39d6221375e1dbfc4933ecf592f957b
 ...
 
 Ok, we have all data with correct (asumption) order but what about key for DES-ECB (asumption) cipher. We can try with some data inside the pcap because guessing was too difficult to try and we have a constant field on all the streams: IPv6 field **c7:3f:1d:b9:a2:4:4a:ff**.
@@ -41,12 +35,12 @@ Notice is key is 15 bytes and we need a 16-bytes one for decipher ecb-des, so pa
 ```
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-''' 
+'''
 DCS17 Challenge S21SEC
 Tenemos la sospecha que se han exfiltrado datos, a través de la red.
 ¿Podrías saber que se ha exfiltrado ?
 Fichero: exfiltracion_111abda47b950e6cd474a43583372c4f.pcapng
-Puntos: 800 
+Puntos: 800
 '''
 from Crypto.Cipher import DES
 from scapy.all import *
