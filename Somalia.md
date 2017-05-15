@@ -1,4 +1,4 @@
-# DCS17CTF S21Sec task and writeups
+# DCS17CTF S21Sec tasks and writeups
 Tasks, scripts and writeups of most fun or interesting tasks of DCS17CTF (S21SEC)
 https://challenge.s21sec.com
 
