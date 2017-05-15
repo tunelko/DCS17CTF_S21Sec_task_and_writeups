@@ -3,6 +3,7 @@ Tasks, scripts and writeups of most fun or interesting tasks of DCS17CTF (S21SEC
 https://challenge.s21sec.com
 
 #### Ucrania – 450 points 
+![](https://i1.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/UCRANIA.jpg?w=844&ssl=1)
 
 Initial analisis with hexdump 
 

@@ -4,6 +4,9 @@ https://challenge.s21sec.com
 
 #### Somalia - 800 points 
 
+![](https://i0.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/SOMALIA.jpg?w=841&ssl=1)
+
+
 They provide us with a pcapng capture with DNS queries IN A from IPv6 host. This queries were of type Standard Query 0x000 A with some random hexadecimal [hex-host].des. I've been working around the idea of some kind of cipher due ".des" domain termination and after trying some others weird methods (hex->ascii, hex-unxor) that produces nothing.
 
 ![](https://blogs.tunelko.com/wp-content/uploads/2017/05/wireshark_exfil.jpg)
