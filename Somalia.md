@@ -38,35 +38,34 @@ Notice is key is 15 bytes and we need a 16-bytes one for decipher ecb-des, so pa
 ```
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
+''' 
 DCS17 Challenge S21SEC
 Tenemos la sospecha que se han exfiltrado datos, a través de la red.
 ¿Podrías saber que se ha exfiltrado ?
 Fichero: exfiltracion_111abda47b950e6cd474a43583372c4f.pcapng
-Puntos: 800
+Puntos: 800 
 '''
 from Crypto.Cipher import DES
-from scapy.all import *
 import binascii
- 
+from scapy.all import *
+import subprocess
+
 # Leemos el pcap
 pcap = rdpcap("exfiltracion_111abda47b950e6cd474a43583372c4f.pcapng")
- 
+
 # Sacamos la key que se deduce de la dirección  ipv6 origen 
 key = pcap[1][IPv6].src 
 key = key.split(':')
- 
-# Necesitamos padding para la key c73f1db9a244aff != c73f1db9a2[0]44aff
+
+# Padding de relleno para la key. son 15 characteres pero necesitamos 16. 
 for i in xrange(len(key)):
-    if len(key[i])==1:
-        key[i] =  str("0" + key[i])
-    ckey = ''.join(key)
- 
-# Sacamos los paquetes ordenando por puerto UDP origen 
-hexdata=''
-for packet in sorted(pcap, key= lambda x:x[UDP].sport,reverse=False):
-    hexdata += ''.join((packet[DNSQR].qname).replace('.des','').replace('.',''))
- 
+	if len(key[i])==1:
+		key[i] =  str("0" + key[i])
+	ckey = ''.join(key) #ckey = "c73f1db9a2044aff"
+
+
+# Ejecutamos tshark ordenando filtrando los streams por src port 
+hexdata = subprocess.check_output("tshark -r exfiltracion_111abda47b950e6cd474a43583372c4f.pcapng -Tfields -e udp.srcport -e dns.qry.name |sort -n | cut -f2| sed 's/.des//g'|tr -d \"\n\"", shell=True)
 # Pasamos los datos para descifrarlos con des ecb 
 hexdata_to_binary = binascii.unhexlify(hexdata)
 key = binascii.unhexlify(ckey)
