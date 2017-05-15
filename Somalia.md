@@ -78,7 +78,7 @@ print "#"*100
 
 Hey!, seems that worked. We have a flag, but we can make use of scapy instead of that ugly tshark subprocess command. So refactor python to produce same result:
 
-**Scapy: Infiniteless possibilites**
+**Scapy: Infiniteless possibilities**
 
 I don’t know deeper scapy but i know has a lot of possibilities to work on pcap files, so i finally reduce the python script using scapy:
 
