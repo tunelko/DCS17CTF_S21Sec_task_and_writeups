@@ -7,6 +7,7 @@ Ranked first at S21SEC DCS17 for no professionals. A total of 44 tasks (50% quiz
 **Finlandia**
 * * *
 
+[https://github.com/tunelko/DCS17CTF_S21Sec_task_and_writeups/blob/master/Finlandia.md](https://github.com/tunelko/DCS17CTF_S21Sec_task_and_writeups/blob/master/Finlandia.md)
 https://blogs.tunelko.com/2017/05/17/s21sec-dcs17ctf-finlandia/
 
 **Mauritania**

