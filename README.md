@@ -4,8 +4,6 @@ https://challenge.s21sec.com
 
 Ranked first at S21SEC DCS17 for no professionals. A total of 44 tasks (50% quiz) for a variety of categories. 
 
-![](https://blogs.tunelko.com/wp-content/uploads/2017/05/scoreboard.jpg)
-
 **Finlandia**
 * * *
 [https://github.com/tunelko/DCS17CTF_S21Sec_task_and_writeups/blob/master/Finlandia.md](https://github.com/tunelko/DCS17CTF_S21Sec_task_and_writeups/blob/master/Finlandia.md)
