@@ -24,9 +24,7 @@ kcharset: [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-',
 secret.txt: +.<^"(%; #.<^/.;^<><=(=>"(.-^<.-^".,/ ; !+$<^ ^+.<^"(%; #.<^/.;^=; -</.<("(.-{^$-^>-^"(%; #.^/.;^=; -</.<("(.-_^+ <^>-(# #$<^#$+^=$[=.^/+ -.^<.-^" ,!( # <^>< -#.^>- ^.;#$- "(.-^#(%$;$-=$^\^-.;, +,$-=$^! <= -=$^".,/+$) _^/$;.^+ <^>-(# #$<^$-^<.^,(<, <^-.^<.-^,.#(%(" # <{^ '''^\^=>^! -#$; ^$<`^ ]$;( *_^(< =< ^+>]
 
 ```
-
-So for first char on secret (+ sign) correspond a position in tcharset by the index of kcharset. And so on … Modifying original script give us the secret text, swapping tcharset and kcharset:
-
+So a char on secret correspond a position in tcharset by the index of kcharset. And so on ... Modifying original script give us the secret text, swapping tcharset and kcharset:
 ```
 
 import sys, string
