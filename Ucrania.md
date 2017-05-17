@@ -15,7 +15,7 @@ See this previous writeup to better understand: https://github.com/jesstess/tiny
 
 Making use of this script (https://github.com/doegox/ElectronicColoringBook/blob/master/ElectronicColoringBook.py) only need to ‘brute’ X resolution, from 800-1200 and wait for a valid image:
 
-```
+```bash	
 for x in {800..1200..100}; do python ElectronicColoringBook.py -x $x image_bffd6d7169826614c3f23cf0a7bdf997.enc ; done
 ```
 

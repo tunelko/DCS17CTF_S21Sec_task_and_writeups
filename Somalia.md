@@ -35,10 +35,10 @@ Ok, we have all data with correct (asumption) order but what about key for DES-E
 
 Notice is key is 15 bytes and we need a 16-bytes one for decipher ecb-des, so padding left with ‘0’ that ‘alone’ 4. We have all to make our first script to solve the task in our initial assumption.
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-''' 
+'''
 DCS17 Challenge S21SEC
 Tenemos la sospecha que se han exfiltrado datos, a través de la red.
 ¿Podrías saber que se ha exfiltrado ?
@@ -82,7 +82,7 @@ Hey!, seems that worked. We have a flag, but we can make use of scapy instead of
 
 I don’t know deeper scapy but i know has a lot of possibilities to work on pcap files, so i finally reduce the python script using scapy:
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 ''' 
@@ -125,7 +125,7 @@ print "#"*100
 ```
 The equivalent part to the tshark version was the sorted udp source port part with scapy:
 
-```
+```python
 # Sacamos los paquetes ordenando por puerto UDP origen 
 hexdata=''
 for packet in sorted(pcap, key= lambda x:x[UDP].sport,reverse=False):

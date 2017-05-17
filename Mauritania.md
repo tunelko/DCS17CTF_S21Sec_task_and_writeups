@@ -20,7 +20,7 @@ Seems IDA could help on this simple task. All you have to do is open binary and 
 
 So it’s **simple XOR with 0x16 key on “paswd” variable**. Remember this weird string (**A1-C3bK4_2h5f8vE**)?  Yes, its xoring and result is our flag. For the task we can reproduce this for loop part and get output.
 
-```
+```python 
 #include <stdio.h>
 int main()
 {

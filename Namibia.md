@@ -48,10 +48,7 @@ Interesting, an squashfs filesystem, so let’s extract with binwalk (-E) and se
 
 Looks like a www dir, seems we are near solution, find a cert.pem and extract SSL serial.
 
-``` 
-
-/etc/ ... 
- 
+```bash
 4,0K drwxrwx--- 1 root vboxsf 4,0K jul 25  2008 .
 4,0K drwxrwx--- 1 root vboxsf 4,0K jul 25  2008 ..
  512 -rwxrwx--- 1 root vboxsf   64 jul 25  2008 ld.so.cache
@@ -82,7 +79,7 @@ Looks like a www dir, seems we are near solution, find a cert.pem and extract SS
 
 openssl let you see info about a certificate, so let’s use:
 
-```
+```bash	
 openssl x509 -in cert.pem -text
 Certificate:
     Data:
