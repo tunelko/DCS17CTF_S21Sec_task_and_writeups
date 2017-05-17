@@ -28,7 +28,7 @@ S224000120762B1BB6CFC9E4385DE8CBB94C094BE1207073579557E8F76C04F159A0A0D74410
 
 Task is asking us about **serial number of local SSL web administrative page**. So, if i’m not wrong, inside that file must be present a web server with some cert.pem file. First step is dump a binary file from srec format. We can use python library “bincopy”. There is another tools on Internet related to srec format for several srec’s types, but for me python works.
 
-```
+```python
 import bincopy
 
 f = bincopy.BinFile()
